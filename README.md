@@ -16,3 +16,6 @@ Steps:
 - pass graphqlHTTP to middleware
 - schema folder and file
 - schema for RootQuery
+- install lodash
+- return filtered id's
+- set graphiql:true
