@@ -6,7 +6,6 @@ const {
     GraphQLString,
     GraphQLSchema,
     GraphQLID,
-    GraphQLInt
 } = graphql;
 
 // Dummy data
@@ -19,11 +18,11 @@ const moviesList = [
 ];
 
 const directorsList = [
-    {"id":1,"name":"Ritchie Breston","gender":"Male"},
-    {"id":2,"name":"Bald Shrieve","gender":"Male"},
-    {"id":3,"name":"Maxie Severns","gender":"Male"},
-    {"id":4,"name":"Alisha Bambery","gender":"Female"},
-    {"id":5,"name":"Freda Colyer","gender":"Female"}
+    {"id":"1","name":"Ritchie Breston","gender":"Male"},
+    {"id":"2","name":"Bald Shrieve","gender":"Male"},
+    {"id":"3","name":"Maxie Severns","gender":"Male"},
+    {"id":"4","name":"Alisha Bambery","gender":"Female"},
+    {"id":"5","name":"Freda Colyer","gender":"Female"}
 ];
 
 // Schema for movies
@@ -39,24 +38,31 @@ const MovieType = new GraphQLObjectType({
 // Schema for directors
 const DirectorType =  new GraphQLObjectType({
     name: 'DirectorType',
-    fields: ()=>({
+    fields: ()=> ({
         id: {type: GraphQLID},
         name: {type: GraphQLString},
         gender: {type: GraphQLString}
     })
-})
+});
 
+// Root query and subquery formats
 const RootQueryType = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: () => ({
         movie: {
             type: MovieType,
-            args: { id: { type: GraphQLString } },
+            args: { id: { type: GraphQLID } },
             resolve(parent, args) {
-                console.log(' _.find(moviesList, {id: args.id});: ',  _.find(moviesList, {id: args.id}));
                 return _.find(moviesList, {id: args.id});
             }
         },
+        director: {
+            type: DirectorType,
+            args: {id: {type: GraphQLID } },
+            resolve(parent, args) {
+                return _.find(directorsList, {id: args.id});
+            }
+        }
     })
 });
 

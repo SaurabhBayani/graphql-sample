@@ -3,9 +3,10 @@ const app = express();
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema/schema');
 
+// middleware for graphql
 app.use('/graphql', graphqlHTTP({
     schema,
-    graphiql: true,
+    graphiql: true, // Show query builder
 }));
 
 // Start this awsome app
