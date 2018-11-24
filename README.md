@@ -14,3 +14,5 @@ Steps:
 - npm i express-graphql
 - require graphqlHTTP
 - pass graphqlHTTP to middleware
+- schema folder and file
+- schema for RootQuery
