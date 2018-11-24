@@ -11,3 +11,6 @@ Steps:
 - npm i express
 - run basic express app
 - npm i graphql
+- npm i express-graphql
+- require graphqlHTTP
+- pass graphqlHTTP to middleware
